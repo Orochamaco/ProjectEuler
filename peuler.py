@@ -269,15 +269,23 @@ for i in lista:
 #c = (pow(j,2) + pow(i,2))
 
 #PROBLEMA 10
-lista_p = ()
-suma = 0
-primo = 2
-numero = 100
+from math import sqrt
 
-for p in range(2, primo):
-    for i in range(2,100):
-        primo = primo % i
-        if(primo == 0 and primo != i and i != 1):
-            continue
-        else:
-            print('XD')
+
+lista_p = []
+suma = 0
+primo = 0
+numero= list(range(2, 2001))
+
+for p in numero:
+    es_primo = True
+    for i in range(1, p + 1):
+        if((p % i == 0) and i !=1 and i != p):
+            es_primo = False
+            break
+    if es_primo:
+        lista_p.append(p)
+           
+
+final = sum(lista_p)
+print(final)
