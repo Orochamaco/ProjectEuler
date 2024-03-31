@@ -269,23 +269,31 @@ for i in lista:
 #c = (pow(j,2) + pow(i,2))
 
 #PROBLEMA 10
-from math import sqrt
+
+"""
+numeros = 2000000
+sum, sieve = 0, [True] * numeros
 
 
-lista_p = []
-suma = 0
-primo = 0
-numero= list(range(2, 2001))
+for p in range(2, numeros):
+        if sieve[p]:
+            sum+= p
+        for i in range(p * p, numeros, p):
+              sieve[i] = False
 
-for p in numero:
-    es_primo = True
-    for i in range(1, p + 1):
-        if((p % i == 0) and i !=1 and i != p):
-            es_primo = False
-            break
-    if es_primo:
-        lista_p.append(p)
+print(sum)
+"""
+
+#Problema 11
+
+import numpy as np
+
+A= np.array([
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+    ])
+
+print(A)
            
 
-final = sum(lista_p)
-print(final)
