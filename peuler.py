@@ -324,58 +324,50 @@ grid =   """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
             20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
             01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48 """ 
 
-#ss = np.array([[int(x) for x in grid.split()][i:i+20] for i in range(0,400,20)]).reshape(20, 20)
+#RESUELTO CON COMPRENSION DE LISTAS
+"""
+ss = np.array([[int(x) for x in grid.split()][i:i+20] for i in range(0,400,20)]).reshape(20, 20)
 
-#print(ss)
-
-
-#matrix = np.array([[1,2,3],[4,5,6],[7,8,9]])
-#right = max(np.prod(matrix[row,column:column + 2]) for row in range(3) for column in range(2))
-#down = max(np.prod(matrix[row: row + 2, column]) for row in range(2) for column in range(3))
-
-
-prueba = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
+right = max(np.prod(ss[row,column:column + 2]) for row in range(20) for column in range(16))
+down = max(np.prod(ss[row: row + 2, column]) for row in range(16) for column in range(20))
+diagonal_right = max(np.prod([ss[row + k, column + k ] for k in range(4)])for row in range(16) for column in range(16))
+diagonal_left = max(np.prod([ss[row + k, column - k ] for k in range(4)])for row in range(16) for column in range(3,20))
 
 
-
-maximo = 0 
-maximo_d = 0
-maximo_diagonal = 0
-maximo_diagonal_2 = 0
-
+calculo = max([right, down, diagonal_right, diagonal_left])
+print(calculo)
+"""
+# RESUELTO CON INDICES
+"""
 def calculo ():
     maximo = 0 
-    
-    for row in range(3): #0
-        for column in range(2): #0
+    #right
+    for row in range(20): #0
+        for column in range(16): #0
             mult = 1 
-            for i in range(2): #0
-                mult*= prueba[row] [column + i] #[0][1]
+            for i in range(4): #0
+                mult*= ss[row] [column + i] #[0][1]
                 maximo = max(mult, maximo)
     
 
 
     #down
-    for row in range(2): #0
-        for column in range(3): #0
+    for row in range(16): #0
+        for column in range(20): #0
             mult = 1 
-            for i in range(2): #0
-                mult*= prueba[row + i] [column] #[0][1]
+            for i in range(4): #0
+                mult*= ss[row + i] [column] #[0][1]
                 maximo = max(mult, maximo)
 
 
 
 
     #diagonal derecha - abajo
-    for row in range(2):  #2,            
-        for column in range(2): #2
+    for row in range(16):  #2,            
+        for column in range(16): #2
                     mult = 1 
-                    for i in range(0, 2): #0 , 1
-                        mult*= prueba[row + i] [column + i] #[0][0]
+                    for i in range(4): #0 , 1
+                        mult*= ss[row + i] [column + i] #[0][0]
                         maximo = max(mult, maximo)
                         
                         
@@ -383,13 +375,16 @@ def calculo ():
 
     #diagonal izquierda - abajo
 
-    for row in range(2, 0,-1):         
-        for column in range(2): 
+    for row in range(19, 3, -1):         
+        for column in range(16): 
             mult = 1  
-            for i in range(2): 
-                mult*= prueba[row - i] [column + i] 
+            for i in range(4): 
+                mult*= ss[row - i] [column + i] 
                 maximo = max(mult, maximo)
 
     return maximo
 
 print(calculo())
+"""
+
+#PROBLEMA 12
