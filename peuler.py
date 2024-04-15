@@ -388,3 +388,42 @@ print(calculo())
 """
 
 #PROBLEMA 12
+from math import sqrt, floor
+
+
+tri = 1
+limite = 0 
+
+
+def triangular(n):
+    result = 0
+    for i in range(1, n + 1):
+        result+=i
+    return result
+
+
+def divisores(r):
+    cont = 0
+    for i in range(1, floor(sqrt(r)) + 1):
+        if r % i == 0:    
+                cont+= 1
+        
+    return cont * 2
+
+
+
+while divisores(triangular(tri)) <= 500:
+    tri+=1
+print(triangular(tri))
+    
+
+"""
+
+    lista = [True] * r
+    for i in range(2, r):
+        if lista[i]:
+            continue
+        for j in range(i * i, r, i):
+              lista[j] = False
+
+"""
